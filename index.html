@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose Day Surprise 🌹</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+h1 {
+    color: #c9184a;
+    font-size: 22px;
+}
+
+.buttons {
+    margin-top: 25px;
+    position: relative;
+    height: 90px;
+}
+
+button {
+    padding: 10px 22px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background: #adb5bd;
+    color: white;
+    position: absolute;
+    left: 120px;
+}
+
+#roseSection {
+    display: none;
+}
+
+.rose {
+    font-size: 90px;
+    cursor: pointer;
+    animation: bloom 2s infinite;
+}
+
+@keyframes bloom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.message {
+    display: none;
+    margin-top: 20px;
+    font-size: 22px;
+    color: #c9184a;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #6c757d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- REAL AUDIO (WORKS 100%) -->
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+
+</audio>
+
+<div class="container" id="start">
+    <h1>Are you ready for your surprise? 💖</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<div class="container" id="roseSection">
+    <div class="rose" id="rose">🌹</div>
+    <div class="subtitle">Touch the rose</div>
+
+    <button id="musicBtn"
+        style="margin-top: 15px; background:#ff4d6d; color:white;
+        padding:10px 20px; border-radius:10px;">
+        🎵 Play Music
+    </button>
+
+    <div class="message" id="message"></div>
+</div>
+
+<script>
+const herName = "Samia Haque Eva";
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const start = document.getElementById("start");
+const roseSection = document.getElementById("roseSection");
+const rose = document.getElementById("rose");
+const message = document.getElementById("message");
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+let playing = false;
+
+// Move No button
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 150 - 75;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Yes button
+yesBtn.addEventListener("click", () => {
+    start.style.display = "none";
+    roseSection.style.display = "block";
+});
+
+// Music toggle
+musicBtn.addEventListener("click", () => {
+    if (!playing) {
+        music.play();
+        musicBtn.innerText = "⏸ Stop Music";
+        playing = true;
+    } else {
+        music.pause();
+        musicBtn.innerText = "🎵 Play Music";
+        playing = false;
+    }
+});
+
+// Rose click
+rose.addEventListener("click", () => {
+    message.innerHTML = `
+        🌹 Happy Rose Day, ${herName}! ❤️<br><br>
+        You are the most beautiful part of my life.
+        <br><br>
+        Stay with me forever 💌
+    `;
+    message.style.display = "block";
+});
+</script>
+
+</body>
+</html>
